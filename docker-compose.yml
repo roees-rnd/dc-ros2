@@ -1,0 +1,33 @@
+version: '2.3'
+services:
+  talker:
+    build: .
+    command: /home/usr/tmp/talker.sh
+    environment:
+      DISPLAY: $DISPLAY
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - ~/.Xauthority:/root/.Xauthority
+      - ./:/home/usr/tmp
+    container_name: temp_talker_ros2
+  listener:
+    build: .
+    command: /home/usr/tmp/listener.sh
+    environment:
+      DISPLAY: $DISPLAY
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - ~/.Xauthority:/root/.Xauthority
+      - ./:/home/usr/tmp
+    container_name: temp_listener_ros2
+  monitor:
+    build: .
+    command: /home/usr/tmp/monitor.sh
+    environment:
+      DISPLAY: $DISPLAY
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - ~/.Xauthority:/root/.Xauthority
+      - ./:/home/usr/tmp
+    container_name: monitor
+    
